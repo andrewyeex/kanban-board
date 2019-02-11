@@ -7,8 +7,8 @@ export default class Column extends React.PureComponent {
   render(){
     const { title, data, handleAddItem, i } = this.props
     return(
-      <div className='kanban-column'>
-        <div>{title}</div>
+      <div className='k-column'>
+        <h2>{title}</h2>
         {data.map((itemProps, i) => <Item key={i} {...itemProps} />)}
         <div onClick={() => handleAddItem(i)} >+ ADD ITEM</div>
       </div>

@@ -1,24 +1,20 @@
-.kanban-column {
-  background :rgb(111, 196, 204);
+.k-column {
+  background:rgb(207, 255, 184);
   min-width: 20em;
   min-height: 50em;
-  padding: 0.5em;
+  padding: 1em;
   margin-right: 1em;
+  border: 1px solid #969696;
+  border-radius: 0.25em;
+  -webkit-border-radius: 0.25em;
+  -moz-border-radius: 0.25em;
+  -ms-border-radius: 0.25em;
+  -o-border-radius: 0.25em;
+}
+.k-column.add {
+  background:rgb(230, 230, 230) !important;
 }
 
-.kanban-column.add {
-  background:rgb(230, 230, 230);
-  min-width: 20em;
-  padding: 0.5em;
-  margin-right: 1em;
-  border: 1px solid #000;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
-.kanban-column:last-of-type{
+.k-column:last-of-type{
   margin-right: 0;
 }

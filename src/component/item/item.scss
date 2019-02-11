@@ -1,0 +1,13 @@
+.k-item {
+  height: 4em;
+  background: #36ab8f;
+  color: #fff;
+  align-items: center;
+  border-radius: 0.25em;
+  margin: 0.5em 0em;
+  cursor: grab;
+}
+
+.k-item:active {
+  cursor: grabbing;
+}
