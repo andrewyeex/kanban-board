@@ -1,0 +1,21 @@
+.kanban-column {
+  background: #6fc4cc;
+  min-width: 20em;
+  min-height: 50em;
+  padding: 0.5em;
+  margin-right: 1em; }
+
+.kanban-column.add {
+  background: #e6e6e6;
+  min-width: 20em;
+  padding: 0.5em;
+  margin-right: 1em;
+  border: 1px solid #000;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px; }
+
+.kanban-column:last-of-type {
+  margin-right: 0; }
