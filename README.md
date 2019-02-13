@@ -5,9 +5,9 @@ Todo
 1. ~~Add new columns~~
 2. ~~Add new items to columns~~
 3. Remove columns
-4. Remove items
+4. ~~Remove items~~
 5. Drag and drop columns
-6. Drag and drop items
+6. ~~Drag and drop items~~
 7. CSS Styling
 8. Unit Test
 
