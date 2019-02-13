@@ -10,6 +10,7 @@
 
 import React, { Component } from 'react'
 import Column from '../../component/column/column'
+import {columnData} from '../../fixture/columns'
 
 export const setColumn = title => ({
   title,
@@ -26,38 +27,39 @@ export const setItem = description => ({
   description
 })
 
-export const addDraggableListenersTo = (target, handleDragged, handleDropped) => {
-  let dragged = target
-  target.addEventListener("dragover", function( event ) { event.preventDefault() }, false)
-  target.addEventListener("dragend",  function( event ) { event.target.style.opacity = '' }, false)
-  target.addEventListener("drop", function( event ) {
-    event.preventDefault()
-    handleDropped(dragged.dataset.switch)
-  }, false)
-  target.addEventListener("dragstart", function( event ) {
-      dragged = target
-      event.target.style.opacity = .5
-      handleDragged(dragged.dataset.switch)
-  }, false)
-}
-
 class Main extends Component {
   constructor(props){
     super(props)
-    this.state = { columns : [setColumn('dummy')] }
+    this.state = {
+      columns : columnData
+    }
   }
   /**
    * Add the ability to add items into a column
    * @param {Number} addToColumn - Index with respect to this.state.columns
    */
-  handleAddItem = (addToColumn) => {
-    const item = window.prompt('Enter item description')
+  handleAddItem = (item, addToColumn) => {
+    item = item ? item.description : window.prompt('Enter item description')
     if (item) {
       this.setState(prevState => {
         const data = [...prevState.columns[addToColumn].data, setItem(item)]
         const columns = prevState.columns.map(
           (obj, i) => {
             if (i === addToColumn) obj.data = data
+            return obj
+          }
+        )
+        return { columns }
+      })
+    }
+  }
+  handleRemoveItem = (item, removeFromColumn) => {
+    if (item) {
+      this.setState(prevState => {
+        const data = prevState.columns[removeFromColumn].data.filter( i => i.id !== item.id )
+        const columns = prevState.columns.map(
+          (obj, i) => {
+            if (i === removeFromColumn) obj.data = data
             return obj
           }
         )
@@ -74,16 +76,27 @@ class Main extends Component {
       this.setState(prevState => ({ columns : [...prevState.columns, setColumn(column)] }))
     }
   }
-
+  /**
+   * Remove the item from the origin column
+   * Add the item to the targeted column it was dropped on
+   * @param {Object} item
+   * @param {Number} originCol
+   * @param {Number} targetCol
+   */
+  handleDragDropItem = (item, originCol, targetCol) => {
+    this.handleRemoveItem(item, originCol)
+    this.handleAddItem(item, targetCol)
+  }
   render(){
     return(
       <div className='container-fluid'>
         <div className='row' style={{flexWrap: 'nowrap'}}>
         {
-          this.state.columns.map((column, i) => {
+          this.state.columns && this.state.columns.map((column, i) => {
             const {data, title} = column
             const handleAddItem = this.handleAddItem
-            const props = {data, title, i, handleAddItem}
+            const handleDragDropItem = this.handleDragDropItem
+            const props = {data, title, i, handleAddItem, handleDragDropItem}
             return < Column key={i} {...props} />
           })
         }
