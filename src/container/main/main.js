@@ -39,6 +39,10 @@ export default class Main extends Component {
       })
     }
   }
+  /**
+   * Remove items from a column
+   * @param {Number} removeFromColumn - Index with respect to this.state.columns
+   */
   handleRemoveItem = (item, removeFromColumn) => {
     if (item) {
       this.setState(prevState => {
@@ -78,11 +82,15 @@ export default class Main extends Component {
       <div className='container-fluid'>
         <div className='row' style={{flexWrap: 'nowrap'}}>
         {
-          this.state.columns && this.state.columns.map((column, i) => {
-            const {data, title} = column
-            const handleAddItem = this.handleAddItem
-            const handleDragDropItem = this.handleDragDropItem
-            const props = {data, title, i, handleAddItem, handleDragDropItem}
+          this.state.columns &&
+          this.state.columns.map((column, i) => {
+            const props = {
+              i,
+              data : column.data,
+              title : column.title,
+              handleAddItem : this.handleAddItem,
+              handleDragDropItem : this.handleDragDropItem
+            }
             return < Column key={i} {...props} />
           })
         }
