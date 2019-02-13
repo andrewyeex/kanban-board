@@ -7,13 +7,15 @@ export default class Column extends React.PureComponent {
   handleOnDrop = (e, targetCol) => {
     e.preventDefault()
     const data = JSON.parse(e.dataTransfer.getData("text/plain"))
-    const originCol = data.originCol
-    if (originCol !== targetCol) this.props.handleDragDropItem(data, originCol, targetCol)
+    if (data.originCol !== targetCol) this.props.handleDragDropItem(data, data.originCol, targetCol)
   }
   render(){
     const { title, data, handleAddItem, i } = this.props
     return(
-      <div className='k-column' onDrop={(e)=>this.handleOnDrop(e, i)} onDragOver={e=>e.preventDefault()}>
+      <div
+        className='k-column'
+        onDrop={(e)=>this.handleOnDrop(e, i)}
+        onDragOver={e=>e.preventDefault()}>
         <h2>{title}</h2>
         {data && data.map((itemProps, index) => {
           itemProps.originCol = i

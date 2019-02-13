@@ -1,5 +1,5 @@
 # Kanban Board
-Simple implementation of a kanban board.  
+Simple implementation of a kanban board.
 
 Todo
 1. ~~Add new columns~~

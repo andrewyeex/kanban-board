@@ -11,23 +11,9 @@
 import React, { Component } from 'react'
 import Column from '../../component/column/column'
 import {columnData} from '../../fixture/columns'
+import { setColumn, setItem } from '../../utils/utils'
 
-export const setColumn = title => ({
-  title,
-  data : [
-    {
-      isCompleted : false,
-      description : 'Description'
-    }
-  ]
-})
-
-export const setItem = description => ({
-  isCompleted : false,
-  description
-})
-
-class Main extends Component {
+export default class Main extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -108,5 +94,3 @@ class Main extends Component {
     )
   }
 }
-
-export default Main
