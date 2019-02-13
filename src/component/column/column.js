@@ -1,16 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Item from '../item/item'
+import { handleOnDrop } from '../../utils/utils'
 import './column.css'
 
 export default class Column extends React.PureComponent {
-  handleOnDrop = (e, targetCol) => {
-    e.preventDefault()
-    const data = JSON.parse(e.dataTransfer.getData("text/plain"))
-    if (data.originCol !== targetCol){
-      this.props.handleDragDropItem(data, data.originCol, targetCol)
-    }
-  }
   render(){
     const {
       i,
@@ -21,7 +15,7 @@ export default class Column extends React.PureComponent {
     return(
       <div
         className='k-column'
-        onDrop={(e)=>this.handleOnDrop(e, i)}
+        onDrop={(e)=>handleOnDrop(e, i)}
         onDragOver={e=>e.preventDefault()}>
         <h2>{title}</h2>
         {

@@ -81,22 +81,22 @@ export default class Main extends Component {
     return(
       <div className='container-fluid'>
         <div className='row' style={{flexWrap: 'nowrap'}}>
-        {
-          this.state.columns &&
-          this.state.columns.map((column, i) => {
-            const props = {
-              i,
-              data : column.data,
-              title : column.title,
-              handleAddItem : this.handleAddItem,
-              handleDragDropItem : this.handleDragDropItem
-            }
-            return < Column key={i} {...props} />
-          })
-        }
-        <div className='k-column add' onClick={this.handleAddColumn}>
-          click here to add a column
-        </div>
+          {
+            this.state.columns &&
+            this.state.columns.map((column, i) => {
+              const props = {
+                i,
+                data : column.data,
+                title : column.title,
+                handleAddItem : this.handleAddItem,
+                handleDragDropItem : this.handleDragDropItem
+              }
+              return < Column key={i} {...props} />
+            })
+          }
+          <div className='k-column add' onClick={this.handleAddColumn}>
+            click here to add a column
+          </div>
         </div>
       </div>
     )
